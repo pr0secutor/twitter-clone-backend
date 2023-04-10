@@ -1,5 +1,6 @@
 const {Router} = require('express')
 const {login,signUp, addTweet} =require('../controller/userController')
+const checkValidToken = require('../middleware/auth')
 
 const router = Router()
 
@@ -8,6 +9,6 @@ router.get('/healthy',async(req,res) => {
 })
 router.post('/login',login)
 router.post('/signup',signUp)
-router.post('/addtweet',addTweet)
+router.post('/addtweet',checkValidToken, addTweet)
 
 module.exports=router
